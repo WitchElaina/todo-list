@@ -5,6 +5,18 @@
   const newTodoName = ref('');
   const todoId = ref(0);
 
+  const readLocalStorage = () => {
+    const data = localStorage.getItem('todoList');
+    if (data) {
+      todoList.value = JSON.parse(data);
+      todoId.value = todoList.value.length;
+    }
+  };
+
+  const writeLocalStorage = () => {
+    localStorage.setItem('todoList', JSON.stringify(todoList.value));
+  };
+
   const addTodo = () => {
     todoList.value.push({
       id: todoId.value++,
@@ -12,10 +24,12 @@
       done: false
     });
     newTodoName.value = '';
+    writeLocalStorage();
   };
 
   const removeTodo = (id) => {
     todoList.value.splice(todoList.value.findIndex(todo => todo.id === id), 1);
+    writeLocalStorage();
   };
 
 
@@ -26,8 +40,10 @@
       }
       return todo;
     });
+    writeLocalStorage()
   };
 
+  readLocalStorage();
 
 </script>
 
@@ -48,12 +64,13 @@
       <main>
           <div id="todoInput">
               <div class="listItem">
-                  <input type="text" v-model="newTodoName" placeholder="New..." @keydown.enter="addTodo">
+                  <input type="text" v-model="newTodoName" placeholder="Input here and return to add..." @keydown.enter="addTodo"   @keydown.esc="removeTodo(todoList[0].id)">
               </div>
           </div>
           <div id="todoList" v-for="todo in todoList" :key="todo.id">
               <div class="listItem">
-                  <div class="todoName" @click="toggleTodo(todo.id)">{{todo.name}}</div>
+                  <div v-if="todo.done" class="todoNameDone" @click="toggleTodo(todo.id)">{{todo.name}}</div>
+                  <div v-else class="todoName" @click="toggleTodo(todo.id)">{{todo.name}}</div>
                   <button @click="removeTodo(todo.id)">×</button>
               </div>
           </div>

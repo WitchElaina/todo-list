@@ -73,6 +73,7 @@ input {
     outline: none;
     font-size: var(--font-size-medium);
     background-color: inherit;
+    width: 100%;
 }
 
 button {
@@ -106,9 +107,13 @@ button {
 }
 
 
-.todoName {
+.todoName, .todoNameDone {
     font-size: var(--font-size-medium);
     background-color: inherit;
+}
+
+.todoNameDone {
+    text-decoration: line-through;
 }
 
 #app {
