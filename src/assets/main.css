@@ -1,0 +1,119 @@
+:root {
+    --color-background: #E5E5E5;
+    --color-main: #DCCDD1;
+
+    --font-size-extra-large: 90px;
+    --font-size-large: 60px;
+    --font-size-medium: 20px;
+
+    --global-radius: 15px;
+    --global-margin: 10px;
+    --side-margin: 20px;
+
+    --max-width: 700px;
+    --min-width: 500px;
+    --common-width: 60%;
+}
+
+* {
+    color: black;
+    font-family: "Product Sans", Arial, Helvetica, sans-serif;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-color: var(--color-background);
+    user-select: none;
+}
+
+top {
+    width: var(--common-width);
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+up {
+    height: 240px;
+}
+
+header {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: var(--font-size-extra-large);
+    font-weight: bold;
+}
+
+.countData {
+    font-size: var(--font-size-large);
+    font-weight: bold;
+}
+
+.countName {
+    font-size: var(--font-size-medium);
+    font-weight: normal;
+}
+
+
+
+input {
+    border: none;
+    outline: none;
+    font-size: var(--font-size-medium);
+    background-color: inherit;
+}
+
+button {
+    border: none;
+    font-size: var(--font-size-medium);
+    background-color: inherit;
+    color: #3a3535;
+}
+
+
+
+.listItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-main);
+    margin: var(--global-margin) var(--side-margin);
+}
+
+#todoList, #todoInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: var(--color-main);
+    border-radius: var(--global-radius);
+    padding: var(--global-margin);
+    margin-top: var(--global-margin);
+    margin-bottom: var(--global-margin);
+}
+
+
+.todoName {
+    font-size: var(--font-size-medium);
+    background-color: inherit;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
