@@ -7,7 +7,7 @@ demo: https://todo-list.mszook.art/
 
 ## Preview
 
-![prev](./img/prev.png)
+![prev](/img/prev.png)
 
 ## How to use
 
