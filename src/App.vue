@@ -1,5 +1,5 @@
 <script setup>
-  import {ref} from "vue";
+import {computed, ref} from "vue";
 
   let todoList = ref([]);
   const newTodoName = ref('');
@@ -43,6 +43,10 @@
     writeLocalStorage()
   };
 
+  const completedTodoNum = computed(() => {
+    return todoList.value.filter(todo => todo.done).length;
+  });
+
   readLocalStorage();
 
 </script>
@@ -54,7 +58,7 @@
           <h1>Todos</h1>
           <div id="todoStatus">
               <div id="totalComp">
-                  <span id="totalCompleted" class="countData">{{todoList.filter(todo => todo.done).length}}</span><span class="countName">Comp.</span>
+                  <span id="totalCompleted" class="countData">{{completedTodoNum}}</span><span class="countName">Comp.</span>
               </div>
               <div id="totalNum">
                   <span id="totalTodos" class="countData">{{todoList.length}}</span><span class="countName">Total</span>
@@ -64,7 +68,7 @@
       <main>
           <div id="todoInput">
               <div class="listItem">
-                  <input type="text" v-model="newTodoName" placeholder="Input here and return to add..." @keydown.enter="addTodo"   @keydown.esc="removeTodo(todoList[0].id)">
+                  <input type="text" v-model="newTodoName" placeholder="Input here and return to add..." @keydown.enter="addTodo" @keydown.esc="removeTodo(todoList[0].id)">
               </div>
           </div>
           <div id="todoList" v-for="todo in todoList" :key="todo.id">
